@@ -1,5 +1,5 @@
 const treeData = {
-
+// Base de dados de todas as árvores
     apple: {
         nome: "Macieira",
         espacamento: 4, 
@@ -363,7 +363,7 @@ const treeData = {
 };
 
 function calcularArvores() {
-
+// Verifica qual árvore e area o usuário selecionou, e se essaas constantes são validas ou vazias
     const typeTree = document.getElementById('tree').value;
     const area = parseFloat(document.getElementById('area').value);
 
@@ -377,18 +377,21 @@ function calcularArvores() {
         return;
     }
 
-
+// Pega qual árvore o usuário escolheu, e a guarda em uma constante, assim como também pega o espacamento dessa arvore na base de dados
     const arvore = treeData[typeTree];
     const espacamento = arvore.espacamento;
 
-
+// Sabendo o espaçamento, se é colocado esse ao quadrado para estabelecer a area por arvore.
+// Depois, para saber o número de árvores na area, se é dividido à area pela area por arvore
     const areaPerTree = espacamento * espacamento;
     const treeNumber = Math.floor(area / areaPerTree);
 
-
+// Multiplicando o número de árvores pela area por árvores, obtemos a area utilizada
+// Finalmente, ao dividir a area utilizada pela area e mutiplicando a area por 100, obtemos a eficiencia da area utilizada (percentagem da area que esta sendo usada)
     const utilizedArea = treeNumber * areaPerTree   
     const efficiency = (utilizedArea / area * 100).toFixed(1);
 
+// Toda essa estrutura em HTML abaixo é criada usando as duas funções abaixo, a estrutura vai aparecer no site após o usuario apertar o botão de cauculo imediatamente    
     const resultdiv = document.getElementById('result');
     resultdiv.innerHTML = `
     <h3>Resultado do Cáulculo</h3>
@@ -414,7 +417,7 @@ function calcularArvores() {
     resultadoDiv.style.display = 'block';
 }
 
-
+// Essa parte garante que ao botão de cauculo ser apertado ou ao se pressionado a tecla enter, o programa em js acima ira rodar
 document.getElementById('area').addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
         event.preventDefault();
